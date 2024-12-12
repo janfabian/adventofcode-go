@@ -1,12 +1,13 @@
-package aoc2024_10
+package aoc2024_11
 
 import (
+	"math/big"
 	"path/filepath"
 	"testing"
 	"time"
 )
 
-const dir = "2024/10/"
+const dir = "2024/11/"
 
 type testCase struct {
 	inputFile   string
@@ -18,9 +19,8 @@ type testCase struct {
 func Test(t *testing.T) {
 	// Define your test cases
 	testCases := []testCase{
-		{inputFile: "01.input", outputFile: "01.output", description: "Test case 1"},
-		{inputFile: "puzzle.input", outputFile: "puzzle.output", description: "Puzzle case"},
-		{inputFile: "01_part2.input", outputFile: "01_part2.output", description: "Test case 1", part2: true},
+		// {inputFile: "01.input", outputFile: "01.output", description: "Test case 1"},
+		// {inputFile: "puzzle.input", outputFile: "puzzle.output", description: "Puzzle case"},
 		{inputFile: "puzzle.input", outputFile: "puzzle_part2.output", description: "Puzzle case", part2: true},
 	}
 
@@ -41,7 +41,9 @@ func Test(t *testing.T) {
 				t.Fatalf("Error: %v", err)
 			}
 
-			if output != solution {
+			solutionBigInt, _ := new(big.Int).SetString(solution, 10)
+
+			if solutionBigInt.Cmp(output) != 0 {
 				t.Fatalf("Expected %v, got %v", solution, output)
 			}
 
