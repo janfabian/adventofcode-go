@@ -1,21 +1,9 @@
 package main
 
-import (
-	"adventofcode/lib"
-	"fmt"
-	"sync"
-)
+import "fmt"
 
 func main() {
-	var wg sync.WaitGroup
-	for _, i := range []int{1, 2, 3, 4, 5} {
-		wg.Add(1)
-		lib.AddTask(func() {
-			defer wg.Done()
-			fmt.Println("Hello, World!", i)
-		})
-	}
+	a := 0b1111
 
-	wg.Wait()
-	lib.Close()
+	fmt.Printf("a = %b\n", a&^0b0100)
 }
